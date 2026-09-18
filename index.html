@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Liquidación Minecore</title>
+<meta name="description" content="Selección de liquidación Minecore — precios especiales por stock.">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0f1720; --panel:#162032; --panel2:#1a2740; --border:#2a3a55;
+  --brand:#1e4976; --brand2:#2d6aad; --accent:#e8f000; --text:#e8eef6; --muted:#8b9bb0;
+  --ok:#3dbe7a; --danger:#e85d5d; --chip:#243552;
+  --radius:14px; --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  background:radial-gradient(1200px 600px at 10% -10%,#1e4976aa,transparent),
+             radial-gradient(900px 500px at 100% 0%,#0a3a5caa,transparent),
+             var(--bg);
+  color:var(--text);font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  padding:0 0 calc(88px + var(--safe-b));
+}
+.top{
+  position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+  background:linear-gradient(180deg,#0f1720ee,#0f1720cc);
+  border-bottom:1px solid var(--border);padding:14px 16px 12px;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+  width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,var(--accent),#c5ce00);
+  display:grid;place-items:center;color:#10151b;font-weight:900;font-size:14px;
+}
+.brand h1{font-size:15px;letter-spacing:.5px}
+.brand p{font-size:11px;color:var(--muted)}
+.wrap{max-width:720px;margin:0 auto;padding:14px 14px 0}
+.card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px;margin-bottom:12px;
+}
+.instruccion{font-size:13.5px;line-height:1.55;color:#d5deea}
+.instruccion strong{color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{
+  background:var(--chip);border:1px solid var(--border);border-radius:999px;
+  padding:5px 10px;font-size:11.5px;color:var(--muted);
+}
+.chip b{color:var(--text);font-weight:600}
+.cat{
+  background:var(--panel2);border:1px solid var(--border);border-radius:var(--radius);
+  margin-bottom:12px;overflow:hidden;
+}
+.cat-head{padding:12px 12px 8px;border-bottom:1px solid var(--border)}
+.cat-title{
+  display:flex;align-items:flex-start;gap:10px;justify-content:space-between;
+}
+.cat-title h2{font-size:14px;font-weight:700;line-height:1.3}
+.cat-all{
+  display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);
+  white-space:nowrap;user-select:none;cursor:pointer;
+}
+.cat-math{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;font-size:11.5px;
+}
+@media(min-width:520px){.cat-math{grid-template-columns:repeat(4,1fr)}}
+.math-box{
+  background:#101925;border:1px solid var(--border);border-radius:10px;padding:8px;
+}
+.math-box span{display:block;color:var(--muted);font-size:10px;margin-bottom:2px;text-transform:uppercase;letter-spacing:.3px}
+.math-box b{font-size:13px;color:var(--text)}
+.math-box.promo b{color:var(--accent)}
+.item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+  padding:12px;border-top:1px solid #223149;
+}
+.item:first-of-type{border-top:none}
+.check{
+  width:22px;height:22px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;
+}
+.item-main{min-width:0}
+.item-name{font-size:13px;font-weight:600;line-height:1.35}
+.item-sku{font-size:11px;color:var(--muted);margin-top:2px}
+.item-prices{font-size:11.5px;margin-top:6px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px}
+.item-prices .liq{color:#9fd0ff}
+.item-prices .unit{color:var(--accent);font-weight:700}
+.qty-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
+.qty-wrap label{font-size:10px;color:var(--muted);text-transform:uppercase}
+.qty{
+  width:56px;height:36px;border-radius:10px;border:1px solid var(--border);
+  background:#0d1520;color:var(--text);font-size:15px;font-weight:700;
+  text-align:center;outline:none;
+}
+.qty:focus{border-color:var(--brand2)}
+.qty:disabled{opacity:.45}
+.foot{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  background:linear-gradient(180deg,#0f172000,#0f1720 28%);
+  padding:18px 14px calc(12px + var(--safe-b));
+  border-top:1px solid transparent;
+}
+.foot-inner{
+  max-width:720px;margin:0 auto;background:var(--panel);
+  border:1px solid var(--border);border-radius:16px;padding:12px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  box-shadow:0 -8px 30px #0008;
+}
+.totales{font-size:12px;color:var(--muted);line-height:1.45}
+.totales b{color:var(--text);font-size:16px}
+.btn{
+  background:linear-gradient(180deg,var(--brand2),var(--brand));
+  color:#fff;border:0;border-radius:12px;padding:12px 16px;
+  font-weight:700;font-size:14px;cursor:pointer;min-width:120px;
+}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.secondary{background:#243552;border:1px solid var(--border)}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden}
+.center{text-align:center;padding:40px 16px}
+.center h2{font-size:20px;margin:12px 0 8px}
+.center p{color:var(--muted);font-size:14px;line-height:1.5}
+.err{
+  background:#3a1c1c;border:1px solid #7a3030;color:#ffc9c9;
+  border-radius:12px;padding:12px;font-size:13px;margin-bottom:12px;
+}
+.loading{color:var(--muted);text-align:center;padding:40px 16px;font-size:14px}
+.ok-badge{
+  width:64px;height:64px;border-radius:50%;margin:0 auto;
+  background:linear-gradient(145deg,#3dbe7a,#1f8a52);display:grid;place-items:center;
+  font-size:28px;box-shadow:0 0 0 8px #3dbe7a22;
+}
+.contacto{margin-top:8px}
+.contacto input{
+  width:100%;margin-top:6px;background:#0d1520;border:1px solid var(--border);
+  border-radius:10px;color:var(--text);padding:10px 12px;font-size:14px;
+}
+small.note{display:block;margin-top:8px;color:var(--muted);font-size:11px}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand">
+    <div class="logo">M</div>
+    <div>
+      <h1>Liquidación Minecore</h1>
+      <p id="subTop">Cargando oferta…</p>
+    </div>
+  </div>
+</div>
+<div class="wrap" id="app">
+  <div class="loading" id="boot">Abriendo tu lista de liquidación…</div>
+</div>
+<div class="foot" id="foot" hidden>
+  <div class="foot-inner">
+    <div class="totales">
+      <div id="totLineas">0 ítems</div>
+      <div><b id="totMonto">$0.00</b> <span style="color:var(--muted);font-size:11px">liq. estimado</span></div>
+    </div>
+    <button class="btn" id="btnSend" type="button">Enviar</button>
+  </div>
+</div>
+<script>
+(function(){
+  var API='https://script.google.com/macros/s/AKfycbyfoS1EX0V9YdqN35jiJ7CDMkxpkX5Gd0XQZJxQAxTiM76vjAoVXyEam2Vzo_WNihZQ/exec';
+  var FORM_V='v1';
+  var params=new URLSearchParams(location.search);
+  var token=(params.get('t')||params.get('token')||'').trim().toLowerCase();
+  var state={ data:null, sel:{}, qty:{}, busy:false };
+
+  function money(n){ return '$'+(Math.round((n||0)*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function esc(s){ return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function round2(n){ return Math.round((n||0)*100)/100; }
+
+  function post(body){
+    return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)})
+      .then(function(r){ return r.json(); });
+  }
+
+  function showErr(msg){
+    document.getElementById('app').innerHTML='<div class="err">'+esc(msg)+'</div>';
+    document.getElementById('foot').hidden=true;
+    document.getElementById('subTop').textContent='No disponible';
+  }
+
+  function unitPrice(it){
+    var q=state.qty[it.sku]||0;
+    var selected=!!state.sel[it.sku];
+    if(!selected) return it.precio_liq;
+    var catFull=isCatFull(it.categoria);
+    if(catFull) return round2(it.precio_liq*0.85);
+    if(q>=it.stock && it.stock>0) return round2(it.precio_liq*0.95);
+    return it.precio_liq;
+  }
+
+  function itemsByCat(cat){
+    return state.data.items.filter(function(it){ return it.categoria===cat; });
+  }
+
+  function isCatFull(cat){
+    var items=itemsByCat(cat);
+    if(!items.length) return false;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];
+      if(!state.sel[it.sku]) return false;
+      if((state.qty[it.sku]||0)<it.stock) return false;
+    }
+    return true;
+  }
+
+  function setCatAll(cat, on){
+    itemsByCat(cat).forEach(function(it){
+      state.sel[it.sku]=!!on;
+      if(on) state.qty[it.sku]=it.stock;
+      else if(!state.qty[it.sku]) state.qty[it.sku]=Math.min(1,it.stock)||1;
+    });
+    render();
+  }
+
+  function liveTotals(){
+    var n=0, tot=0, lista=0;
+    state.data.items.forEach(function(it){
+      if(!state.sel[it.sku]) return;
+      var q=state.qty[it.sku]||0;
+      if(q<1) return;
+      n++;
+      tot+=unitPrice(it)*q;
+      lista+=it.precio_lista*q;
+    });
+    return {n:n, tot:round2(tot), lista:round2(lista)};
+  }
+
+  function render(){
+    var d=state.data;
+    var cats=d.categorias||[];
+    var html='';
+    html+='<div class="card"><div class="instruccion">'+esc(d.instruccion)+'</div>';
+    html+='<div class="meta"><span class="chip">Cliente <b>'+esc(d.cliente.nombre)+'</b></span>';
+    html+='<span class="chip">Oleada <b>'+esc(d.oleadaId)+'</b></span>';
+    html+='<span class="chip">Form <b>'+FORM_V+'</b></span></div>';
+    html+='<div class="contacto"><label style="font-size:12px;color:var(--muted)">Contacto / referencia (opcional)</label>';
+    html+='<input id="contacto" type="text" maxlength="80" placeholder="Nombre o celular" value="'+esc(state.contacto||'')+'"></div>';
+    html+='<small class="note">Promo ítem stock completo: −'+(d.promo&&d.promo.item_stock_completo_pct||5)+'%. Promo categoría completa al stock: −'+(d.promo&&d.promo.categoria_completa_pct||15)+'% (no se suman).</small>';
+    html+='</div>';
+    // honeypot
+    html+='<input class="hp" id="hp_x9" name="hp_x9" tabindex="-1" autocomplete="off">';
+
+    cats.forEach(function(c){
+      var full=isCatFull(c.nombre);
+      html+='<section class="cat" data-cat="'+esc(c.nombre)+'">';
+      html+='<div class="cat-head"><div class="cat-title">';
+      html+='<h2>'+esc(c.nombre)+' — '+c.n+' ítems</h2>';
+      html+='<label class="cat-all"><input class="check cat-all-cb" type="checkbox" data-cat="'+esc(c.nombre)+'" '+(full?'checked':'')+'> toda la categoría</label>';
+      html+='</div><div class="cat-math">';
+      html+='<div class="math-box"><span>Lista (stock)</span><b>'+money(c.lista_total)+'</b></div>';
+      html+='<div class="math-box"><span>Liq. base</span><b>'+money(c.liq_base)+'</b></div>';
+      html+='<div class="math-box promo"><span>Liq. −15% categoría</span><b>'+money(c.liq_con_15pct)+'</b></div>';
+      html+='<div class="math-box"><span>Ahorro vs lista</span><b>'+money(c.ahorro_15)+'</b></div>';
+      html+='</div></div>';
+      itemsByCat(c.nombre).forEach(function(it){
+        var on=!!state.sel[it.sku];
+        var q=state.qty[it.sku]!=null?state.qty[it.sku]:Math.min(1,it.stock)||1;
+        var u=unitPrice(it);
+        var promoTxt='';
+        if(on){
+          if(full) promoTxt=' · precio −15% categoría';
+          else if(q>=it.stock) promoTxt=' · precio −5% stock completo';
+        }
+        html+='<div class="item" data-sku="'+esc(it.sku)+'">';
+        html+='<input class="check item-cb" type="checkbox" data-sku="'+esc(it.sku)+'" '+(on?'checked':'')+'>';
+        html+='<div class="item-main"><div class="item-name">'+esc(it.nombre)+'</div>';
+        html+='<div class="item-sku">'+esc(it.sku)+' · stock '+it.stock+'</div>';
+        html+='<div class="item-prices"><span>Lista '+money(it.precio_lista)+'</span>';
+        html+='<span class="liq">Liq '+money(it.precio_liq)+'</span>';
+        if(on) html+='<span class="unit">Unit '+money(u)+promoTxt+'</span>';
+        html+='</div></div>';
+        html+='<div class="qty-wrap"><label>Qty</label><input class="qty" type="number" min="1" max="'+it.stock+'" step="1" data-sku="'+esc(it.sku)+'" value="'+q+'" '+(on?'':'disabled')+'></div>';
+        html+='</div>';
+      });
+      html+='</section>';
+    });
+
+    document.getElementById('app').innerHTML=html;
+    document.getElementById('foot').hidden=false;
+    document.getElementById('subTop').textContent=d.cliente.nombre;
+    var t=liveTotals();
+    document.getElementById('totLineas').textContent=t.n+(t.n===1?' ítem':' ítems');
+    document.getElementById('totMonto').textContent=money(t.tot);
+    document.getElementById('btnSend').disabled=t.n<1||state.busy;
+
+    var ci=document.getElementById('contacto');
+    if(ci){ ci.addEventListener('input',function(){ state.contacto=ci.value; }); }
+
+    document.querySelectorAll('.item-cb').forEach(function(cb){
+      cb.addEventListener('change',function(){
+        var sku=cb.getAttribute('data-sku');
+        state.sel[sku]=cb.checked;
+        if(cb.checked && !(state.qty[sku]>=1)){
+          var it=state.data.items.find(function(x){return x.sku===sku;});
+          state.qty[sku]=Math.min(1,it?it.stock:1)||1;
+        }
+        render();
+      });
+    });
+    document.querySelectorAll('.qty').forEach(function(inp){
+      inp.addEventListener('change',function(){
+        var sku=inp.getAttribute('data-sku');
+        var it=state.data.items.find(function(x){return x.sku===sku;});
+        var v=parseInt(inp.value,10);
+        if(!(v>=1)) v=1;
+        if(it && v>it.stock) v=it.stock;
+        state.qty[sku]=v;
+        state.sel[sku]=true;
+        render();
+      });
+    });
+    document.querySelectorAll('.cat-all-cb').forEach(function(cb){
+      cb.addEventListener('change',function(){
+        setCatAll(cb.getAttribute('data-cat'), cb.checked);
+      });
+    });
+  }
+
+  function success(res){
+    document.getElementById('foot').hidden=true;
+    document.getElementById('app').innerHTML=
+      '<div class="card center"><div class="ok-badge">✓</div>'+
+      '<h2>Solicitud enviada</h2>'+
+      '<p>Recibimos tu selección de liquidación.<br>Líneas: <b>'+esc(res.n)+'</b> · Total estimado: <b>'+money(res.total)+'</b></p>'+
+      '<p style="margin-top:10px">Minecore revisará el borrador y te contactará.</p>'+
+      '<p style="margin-top:14px;font-size:12px;color:var(--muted)">Ref. interna #'+esc(res.preCotFila)+'</p></div>';
+  }
+
+  document.getElementById('btnSend').addEventListener('click',function(){
+    if(state.busy) return;
+    var hp=document.getElementById('hp_x9');
+    var lineas=[];
+    var categoriasFull=[];
+    (state.data.categorias||[]).forEach(function(c){ if(isCatFull(c.nombre)) categoriasFull.push(c.nombre); });
+    state.data.items.forEach(function(it){
+      if(!state.sel[it.sku]) return;
+      lineas.push({sku:it.sku, qty:state.qty[it.sku]||1, selected:true});
+    });
+    if(!lineas.length) return;
+    state.busy=true;
+    document.getElementById('btnSend').disabled=true;
+    document.getElementById('btnSend').textContent='Enviando…';
+    post({
+      action:'liqSubmit',
+      token:token,
+      lineas:lineas,
+      categoriasFull:categoriasFull,
+      contacto:state.contacto||'',
+      hp_x9: hp?hp.value:''
+    }).then(function(res){
+      state.busy=false;
+      if(!res||!res.ok){
+        document.getElementById('btnSend').textContent='Enviar';
+        document.getElementById('btnSend').disabled=false;
+        alert((res&&res.error)||'No se pudo enviar. Probá de nuevo.');
+        return;
+      }
+      success(res);
+    }).catch(function(){
+      state.busy=false;
+      document.getElementById('btnSend').textContent='Enviar';
+      document.getElementById('btnSend').disabled=false;
+      alert('Error de red. Probá de nuevo.');
+    });
+  });
+
+  if(!/^[a-f0-9]{24}$/i.test(token)){
+    showErr('Falta el enlace completo. Pedile a Minecore tu URL con token (?t=…).');
+    return;
+  }
+  post({action:'liqGet', token:token}).then(function(res){
+    if(!res||!res.ok){ showErr((res&&res.error)||'No se pudo cargar la liquidación.'); return; }
+    state.data=res;
+    state.contacto='';
+    res.items.forEach(function(it){
+      state.sel[it.sku]=false;
+      state.qty[it.sku]=Math.min(1,it.stock)||1;
+    });
+    render();
+  }).catch(function(){
+    showErr('No se pudo conectar con Minecore. Revisá tu conexión e intentá de nuevo.');
+  });
+})();
+</script>
+</body>
+</html>
